@@ -19,7 +19,7 @@ const page = () => {
       <div className="grid  grid-rows-[40px_1fr_40px] items-start justify-items-start  sm:p-5 font-[family-name:var(--font-geist-sans)] min-h-screen bg-cover bg-center bg-main-background bg-fixed">
         <div className="bg-gray-200 p-10 rounded-lg shadow-lg mt-5">
           <h1 className="text-5xl font-extrabold text-center text-indigo-600 px-30">
-            Hi, I'm Khue Duong
+            Hi, I&apos;m Khue Duong
           </h1>
           <p className="text-gray-600 text-center">
             0420957710 | duonghoangkhue.2004@gmail.com |{" "}
@@ -61,7 +61,7 @@ const page = () => {
                 <ul className="list-disc ml-6 text-gray-700">
                   <li>
                     Implement frontend analytic dashboards with React framework
-                    and Shopify's Polaris
+                    and Shopify&apos;s Polaris
                   </li>
                   <li>
                     Delivered insightful business data via RESTful API endpoints
@@ -89,7 +89,7 @@ const page = () => {
                 <ul className="list-disc ml-6 text-gray-700">
                   <li>
                     Developed Python automation scripts for Blender according to
-                    client's requirements
+                    client&apos;s requirements
                   </li>
                   <li>Ensured code readiness for backend deployment</li>
                   <li>
@@ -112,7 +112,8 @@ const page = () => {
                 </p>
                 <ul className="list-disc ml-6 text-gray-700">
                   <li>
-                    Assessed students' assignments weekly and provided feedback
+                    Assessed students&apos; assignments weekly and provided
+                    feedback
                   </li>
                   <li>
                     Guided students in gaining confidence with course materials
