@@ -33,9 +33,22 @@ jobs:
           ls -la
           ls -la .next
           pwd
+          ls /home/runner/work/cloud-resume-fe/cloud-resume-fe
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: .cloud-resume-fe/next
+          path: /home/runner/work/cloud-resume-fe/cloud-resume-fe/cloud-resume-fe/.next
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: cloud-resume-fe/cloud-resume-fe/.next
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: cloud-resume-fe/.next
