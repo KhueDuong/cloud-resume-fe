@@ -55,6 +55,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
