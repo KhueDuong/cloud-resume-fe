@@ -36,8 +36,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: |
-            /.next/
-            /.next
-            .next
-            .next/
+          path: ./.next/
