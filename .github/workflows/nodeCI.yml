@@ -28,12 +28,10 @@ jobs:
       - name: List Files in Working Directory
         run: |
           ls -la
-          ls -la .next
           pwd
-          ls /home/runner/work/cloud-resume-fe/cloud-resume-fe
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: ./.next/
+          path: ./build/
