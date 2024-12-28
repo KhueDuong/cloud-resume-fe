@@ -11,11 +11,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
-
+    runs-on:
+      ubuntu-latest
       # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -26,7 +23,7 @@ jobs:
           node-version: 18.x
           cache: "npm"
       - run: npm ci
-      - run: npm run build --if-present
+      - run: npm run build
 
       - name: List Files in Working Directory
         run: |
@@ -39,16 +36,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: /home/runner/work/cloud-resume-fe/cloud-resume-fe/cloud-resume-fe/.next
-
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: cloud-resume-fe/cloud-resume-fe/.next
-
-      - name: Upload Build Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: cloud-resume-fe/.next
+          path: |
+            .next
+            .next/
