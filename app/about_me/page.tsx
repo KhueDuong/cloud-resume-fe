@@ -29,7 +29,7 @@ const page = () => {
             <p className="text-lg text-gray-800 drop-shadow-lg">
               My real name is Duong Hoang Khue (Khue is my first name, Duong is
               last name and Hoang is middle name). Because of the Vietnamese
-              naming system my name is flipped around like that, so you'll
+              naming system my name is flipped around like that, so you&apos;ll
               usually see something like Hoang Khue Duong or even Hoang K. Duong
               on my documents. So legally, my first name is Hoang Khue and
               sometimes people call me Hoang even though technically thats my
