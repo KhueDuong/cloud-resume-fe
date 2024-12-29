@@ -35,6 +35,10 @@ const page = () => {
               sometimes people call me Hoang even though technically thats my
               middle name.
             </p>
+            <br></br>
+            <p className="text-lg text-gray-800 drop-shadow-lg">
+              I was born on 18th Dec 2024, and lived in Hanoi, Vietnam until 17.
+            </p>
             <div className="flex space-x-5 "></div>
             <br></br>
           </div>
