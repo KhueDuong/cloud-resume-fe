@@ -38,6 +38,8 @@ const page = () => {
             <br></br>
             <p className="text-lg text-gray-800 drop-shadow-lg">
               I was born on 18th Dec 2024, and lived in Hanoi, Vietnam until 17.
+              I moved to Melbourne, Australia for my Bachelor Degree study at
+              The University of Melbourme and I am set to graduate this June.
             </p>
             <div className="flex space-x-5 "></div>
             <br></br>

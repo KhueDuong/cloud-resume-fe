@@ -1,7 +1,29 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    const getClientLocation = async () => {
+      const resIP = await fetch("https://ipinfo.io/json");
+      const locationData = await resIP.json();
+
+      console.log(locationData);
+
+      const res = await fetch("https://api.khuebanhzai.com/view-count", {
+        method: "POST",
+        body: JSON.stringify({
+          ip: locationData.ip,
+          lastViews: new Date().getFullYear(),
+          count: 1,
+        }),
+      });
+    };
+
+    getClientLocation();
+  }, []);
+
   return (
     <div className="grid grid-rows-[100px_1fr_100px]  items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-main-background">
       <div className="bg-gray-200 p-10 rounded-lg shadow-lg mt-40">
