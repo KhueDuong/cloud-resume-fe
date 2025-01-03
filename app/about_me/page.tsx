@@ -41,6 +41,12 @@ const page = () => {
               I moved to Melbourne, Australia for my Bachelor Degree study at
               The University of Melbourme and I am set to graduate this June.
             </p>
+            <br></br>
+            <p className="text-lg text-gray-800 drop-shadow-lg">
+              I like cooking, playing my guitar and sometimes videos games
+              during my free time. If you navigate to the 'My Pictures' page you
+              can see some of my baking goods and beautiful dishes that I made.
+            </p>
             <div className="flex space-x-5 "></div>
             <br></br>
           </div>
