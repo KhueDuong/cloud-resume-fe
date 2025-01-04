@@ -27,6 +27,7 @@ export const updateViewCount = async () => {
       method: "POST",
       body: JSON.stringify({
         ip: ip,
+        details: location,
         count: 1,
         lastVisited: gmt0Date,
       }),
