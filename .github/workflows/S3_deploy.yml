@@ -13,6 +13,7 @@ env:
   ECS_CLUSTER: cloud-resume
   ECS_TASK_DEFINITION: task-definition.json
   CONTAINER_NAME: cloud-resume-fe
+  NEXT_PUBLIC_API_BASE_URL: ${{ vars.NEXT_PUBLIC_API_BASE_URL }}
 
 permissions:
   contents: read
