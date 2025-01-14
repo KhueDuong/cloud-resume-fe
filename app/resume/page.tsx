@@ -5,23 +5,23 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <div className="flex sticky top-0 bg-gray-800 text-white px-6 py-2 z-0 shadow-lg items-center">
+      <div className="flex sticky top-0 bg-gray-800 text-white lg:px-6 px-3 lg:py-2 py-1 z-3 shadow-lg items-center">
         <Button
           asChild
-          className="bg-white text-black border-2 border-gray-300 rounded-lg py-2 px-4 hover:bg-gray-100"
+          className="bg-white text-black md:text-xs lg:text-lg border-2 border-gray-300 lg:rounded-lg md:rounded-xs py-0 px-2 lg:py-2 lg:px-4 hover:bg-gray-100"
         >
           <Link href="/">Home Page</Link>
         </Button>
-        <p className="px-40">
+        <p className="px-3 lg:px-40 md:text-xs lg:text-lg">
           Welcome to My Website! Check out the latest updates.
         </p>
       </div>
       <div className="grid  grid-rows-[40px_1fr_40px] items-start justify-items-start  sm:p-5 font-[family-name:var(--font-geist-sans)] min-h-screen bg-cover bg-center bg-main-background bg-fixed">
-        <div className="bg-gray-200 p-10 rounded-lg shadow-lg mt-5">
-          <h1 className="text-5xl font-extrabold text-center text-indigo-600 px-30">
+        <div className="bg-gray-200 px-2 py-4 lg:px-10 lg:py-10 rounded-lg shadow-lg mt-5 mx-2">
+          <h1 className="text-2xl lg:text-5xl font-extrabold text-center text-indigo-600 px-30">
             Hi, I&apos;m Khue Duong
           </h1>
-          <p className="text-gray-600 text-center">
+          <p className="text-xs lg:text-md text-gray-600 text-center">
             0420957710 | duonghoangkhue.2004@gmail.com |{" "}
             <a
               href="https://linkedin.com/in/hoangkhue"
@@ -33,32 +33,34 @@ const page = () => {
           </p>
           <br></br>
 
-          <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+          <div className="max-w-4xl mx-auto bg-white px-3 py-5 lg:px-8 rounded-lg shadow-lg">
             <div className="mb-6">
-              <h2 className="text-2xl font-semibold text-gray-800">
+              <h2 className="text-xl lg:text-2xl font-semibold text-gray-800">
                 EDUCATION
               </h2>
-              <p className="text-gray-700">
+              <p className="text-sm lg:text-md text-gray-700">
                 Bachelor of Science in Computing and Software Development{" "}
                 <span className="text-gray-500">| May, 2025 - May, 2025</span>
               </p>
-              <p className="text-gray-700">The University of Melbourne</p>
-              <p className="text-gray-500">GPA: 79/100</p>
+              <p className="text-xs lg:text-md text-gray-700">
+                The University of Melbourne
+              </p>
+              <p className="text-xs lg:text-md text-gray-500">GPA: 79/100</p>
             </div>
 
             <div className="mb-6">
-              <h2 className="text-2xl font-semibold text-gray-800">
+              <h2 className="text-xl lg:text-2xl font-semibold text-gray-800">
                 RELEVANT EXPERIENCE
               </h2>
 
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="lg:text-xl font-bold text-gray-800">
                   Full Stack Developer Intern
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-xs lg:text-md text-gray-600">
                   Jul, 2024 - Present | Godisoft, Ontario, Canada
                 </p>
-                <ul className="list-disc ml-6 text-gray-700">
+                <ul className="text-xs lg:text-md list-disc ml-6 text-gray-700">
                   <li>
                     Implement frontend analytic dashboards with React framework
                     and Shopify&apos;s Polaris
@@ -80,13 +82,13 @@ const page = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="lg:text-xl  font-bold text-gray-800">
                   Freelance Developer
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-xs lg:text-md text-gray-600">
                   Dec, 2022 - Aug, 2023 | Upwork, Melbourne, Australia
                 </p>
-                <ul className="list-disc ml-6 text-gray-700">
+                <ul className="text-xs lg:text-md list-disc ml-6 text-gray-700">
                   <li>
                     Developed Python automation scripts for Blender according to
                     client&apos;s requirements
@@ -104,13 +106,13 @@ const page = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="lg:text-xl  font-bold text-gray-800">
                   STEM & English Tutor
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-xs lg:text-md text-gray-600">
                   Apr, 2021 - Apr, 2022 | Private Household, Hanoi, Vietnam
                 </p>
-                <ul className="list-disc ml-6 text-gray-700">
+                <ul className="text-xs lg:text-md  list-disc ml-6 text-gray-700">
                   <li>
                     Assessed students&apos; assignments weekly and provided
                     feedback
@@ -124,13 +126,15 @@ const page = () => {
             </div>
 
             <div className="mb-6">
-              <h2 className="text-2xl font-semibold text-gray-800">PROJECTS</h2>
+              <h2 className="text-xl lg:text-2xl  font-semibold text-gray-800">
+                PROJECTS
+              </h2>
 
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="lg:text-xl   font-bold text-gray-800">
                   Medical Pantry Item Scanner
                 </h3>
-                <ul className="list-disc ml-6 text-gray-700">
+                <ul className="text-xs lg:text-md  list-disc ml-6 text-gray-700">
                   <li>
                     Android warehouse management application developed as a
                     team-based Scrum Agile project
@@ -146,10 +150,10 @@ const page = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="lg:text-xl   font-bold text-gray-800">
                   Viceragenesis
                 </h3>
-                <ul className="list-disc ml-6 text-gray-700">
+                <ul className="text-xs lg:text-md  list-disc ml-6 text-gray-700">
                   <li>
                     3D horror/action game created by a team of four in Unity
                   </li>
@@ -165,10 +169,10 @@ const page = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="lg:text-xl   font-bold text-gray-800">
                   Kosmophagist
                 </h3>
-                <ul className="list-disc ml-6 text-gray-700">
+                <ul className="text-xs lg:text-md  list-disc ml-6 text-gray-700">
                   <li>
                     Hyper-casual Android game created in Unity, published on
                     Play Store
@@ -182,10 +186,10 @@ const page = () => {
               </div>
 
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-800">
+                <h3 className="lg:text-xl font-bold text-gray-800">
                   Personal Website
                 </h3>
-                <ul className="list-disc ml-6 text-gray-700">
+                <ul className="text-xs lg:text-md  list-disc ml-6 text-gray-700">
                   <li>
                     Designed retro website built with HTML/CSS and Express.js
                   </li>
@@ -198,22 +202,22 @@ const page = () => {
             </div>
 
             <div className="mb-6">
-              <h2 className="text-2xl font-semibold text-gray-800">
+              <h2 className="text-xl lg:text-2xl font-semibold text-gray-800">
                 TECHNICAL SKILLS
               </h2>
-              <p className="text-gray-700">
+              <p className="text-xs lg:text-md  text-gray-700">
                 <strong>Languages:</strong> C#, Typescript, Python, C++, Java,
                 Cg/HLSL, SQL, MATLAB
               </p>
-              <p className="text-gray-700">
+              <p className="text-xs lg:text-md  text-gray-700">
                 <strong>Frameworks & Libraries:</strong> React, Node.js, .NET,
                 ABP Framework, Python Pandas, Matplotlib
               </p>
-              <p className="text-gray-700">
+              <p className="text-xs lg:text-md  text-gray-700">
                 <strong>Technical Tools:</strong> Unity, MongoDB, PostgreSQL,
                 Linux, AWS, Git
               </p>
-              <p className="text-gray-700">
+              <p className="text-xs lg:text-md  text-gray-700">
                 <strong>Productivity Tools:</strong> Confluence, Trello, Github
               </p>
             </div>

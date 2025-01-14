@@ -5,14 +5,14 @@ import React from "react";
 const page = () => {
   return (
     <>
-      <div className="flex sticky top-0 bg-gray-800 text-white px-6 py-2 z-10 shadow-lg items-center">
+      <div className="flex sticky top-0 bg-gray-800 text-white lg:px-6 px-3 lg:py-2 py-1 z-3 shadow-lg items-center">
         <Button
           asChild
-          className="bg-white text-black border-2 border-gray-300 rounded-lg py-2 px-4 hover:bg-gray-100"
+          className="bg-white text-black md:text-xs lg:text-lg border-2 border-gray-300 lg:rounded-lg md:rounded-xs py-0 px-2 lg:py-2 lg:px-4 hover:bg-gray-100"
         >
           <Link href="/">Home Page</Link>
         </Button>
-        <p className="px-40">
+        <p className="px-3 lg:px-40 md:text-xs lg:text-lg">
           Welcome to My Website! Check out the latest updates.
         </p>
       </div>
