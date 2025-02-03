@@ -2,6 +2,31 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
+const picNum = 10;
+function Pictures() {
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+      {Array.from({ length: picNum }, (_, i) => (
+        <div
+          className="flex flex-col bg-neutral-700 w-[500px] h-[360px] p-3 rounded-md justify-between"
+          key={i}
+        >
+          <img
+            key={i}
+            src="https://s3.ap-southeast-2.amazonaws.com/images-khuebanhzai.com/test.PNG%2Bmjfoeeyiasd"
+            alt="new"
+            className="w-full h-[275px] object-cover rounded-md"
+          />
+          <div
+            className="bg-neutral-300 w-full h-[50px] p-3 rounded-md align"
+            key={i}
+          ></div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const page = () => {
   return (
     <>
@@ -16,13 +41,15 @@ const page = () => {
           Welcome to My Website! Check out the latest updates.
         </p>
       </div>
-      <div className="grid grid-rows-[60px_1fr_60px]  items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-main-background">
-        <div className="bg-gray-200 p-10 rounded-lg shadow-lg mt-20">
+      <div className="grid grid-rows-[60px_1fr_60px] items-center justify-items-center min-h-screen gap-1 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-main-background">
+        <div></div>
+        <div className="bg-gray-200 p-10 rounded-lg shadow-lg">
           <h1 className="text-7xl font-extrabold text-center text-indigo-600 drop-shadow-lg px-50 py-10">
             My Pictures
           </h1>
           <div className="flex space-x-5 "></div>
           <br></br>
+          <Pictures />
         </div>
       </div>
     </>
