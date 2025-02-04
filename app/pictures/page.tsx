@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 /*
 export async function getServerSideProps() {
   try {
@@ -21,9 +21,11 @@ const picNum = 10;
 async function Pictures() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
   const data = await res.json();
+  const test = await fetch(`${API_BASE_URL}/view-count?ip="120.21.90.103"`);
+  const testData = await test.json();
   return (
     <>
-      <h2 className="text-xl font-semibold">{data.title}</h2>
+      <h2 className="text-xl font-semibold">{testData.individualViewCount}</h2>
       <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
         {Array.from({ length: picNum }, (_, i) => (
           <div
