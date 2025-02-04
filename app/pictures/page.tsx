@@ -19,8 +19,8 @@ export async function getServerSideProps() {
 
 const picNum = 10;
 async function Pictures() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-  const data = await res.json();
+  //const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  //const data = await res.json();
   const test = await fetch(`${API_BASE_URL}/view-count?ip="120.21.90.103"`);
   const testData = await test.json();
   return (
