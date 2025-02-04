@@ -2,28 +2,48 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
+/*
+export async function getServerSideProps() {
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    if (!res.ok) throw new Error("Failed to fetch data");
+
+    const data = await res.json();
+
+    return { props: { data } };
+  } catch (error) {
+    return { props: { error: "error" } };
+  }
+}
+  */
+
 const picNum = 10;
-function Pictures() {
+async function Pictures() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const data = await res.json();
   return (
-    <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
-      {Array.from({ length: picNum }, (_, i) => (
-        <div
-          className="flex flex-col bg-neutral-700 w-[500px] h-[360px] p-3 rounded-md justify-between"
-          key={i}
-        >
-          <img
-            key={i}
-            src="https://s3.ap-southeast-2.amazonaws.com/images-khuebanhzai.com/test.PNG%2Bmjfoeeyiasd"
-            alt="new"
-            className="w-full h-[275px] object-cover rounded-md"
-          />
+    <>
+      <h2 className="text-xl font-semibold">{data.title}</h2>
+      <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+        {Array.from({ length: picNum }, (_, i) => (
           <div
-            className="bg-neutral-300 w-full h-[50px] p-3 rounded-md align"
+            className="flex flex-col bg-neutral-700 w-[500px] h-[360px] p-3 rounded-md justify-between"
             key={i}
-          ></div>
-        </div>
-      ))}
-    </div>
+          >
+            <img
+              key={i}
+              src="https://s3.ap-southeast-2.amazonaws.com/images-khuebanhzai.com/test.PNG%2Bmjfoeeyiasd"
+              alt="new"
+              className="w-full h-[275px] object-contain rounded-md"
+            />
+            <div
+              className="bg-neutral-300 w-full h-[50px] p-3 rounded-md align"
+              key={i}
+            ></div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
