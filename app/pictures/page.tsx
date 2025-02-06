@@ -1,55 +1,56 @@
+"use client";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import React from "react";
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-/*
-export async function getServerSideProps() {
-  try {
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-    if (!res.ok) throw new Error("Failed to fetch data");
+import React, { useEffect, useState } from "react";
+import { getAllPictures, postNewPicture } from "../api/pictures";
 
-    const data = await res.json();
+import { ImageForm } from "./form";
 
-    return { props: { data } };
-  } catch (error) {
-    return { props: { error: "error" } };
-  }
-}
-  */
+export default function Pictures() {
+  function PicturesFeed() {
+    const [pictures, setPictures] = useState<any[]>([]);
+    useEffect(() => {
+      const fetchCount = async () => {
+        try {
+          const data = await getAllPictures();
+          setPictures(data.pictures);
+        } catch (error) {
+          console.error("Error fetching pictures:", error);
+        }
+      };
+      fetchCount(); // Fetch the count and update state
+    }, []);
 
-const picNum = 10;
-async function Pictures() {
-  //const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-  //const data = await res.json();
-  const test = await fetch(`${API_BASE_URL}/view-count?ip="120.21.90.103"`);
-  const testData = await test.json();
-  return (
-    <>
-      <h2 className="text-xl font-semibold">{testData.individualViewCount}</h2>
-      <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
-        {Array.from({ length: picNum }, (_, i) => (
-          <div
-            className="flex flex-col bg-neutral-700 w-[500px] h-[360px] p-3 rounded-md justify-between"
-            key={i}
-          >
-            <img
-              key={i}
-              src="https://s3.ap-southeast-2.amazonaws.com/images-khuebanhzai.com/test.PNG%2Bmjfoeeyiasd"
-              alt="new"
-              className="w-full h-[275px] object-contain rounded-md"
-            />
+    return (
+      <>
+        <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+          {pictures.map((pic, i) => (
             <div
-              className="bg-neutral-300 w-full h-[50px] p-3 rounded-md align"
-              key={i}
-            ></div>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
+              className="flex flex-col bg-neutral-700 w-[500px] h-[360px] p-3 rounded-md justify-between"
+              key={i + "a"}
+            >
+              <img
+                key={i + "b"}
+                src={pic.URL}
+                alt="new"
+                className="w-full h-[275px] object-contain rounded-md"
+              />
+              <div
+                className="bg-neutral-300 w-full h-[50px] p-3 rounded-md"
+                key={i + "c"}
+              >
+                <p className="px-3 md:text-xs lg:text-lg text-left">
+                  {"By " + pic.author}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  }
 
-const page = () => {
   return (
     <>
       <div className="flex sticky top-0 bg-gray-800 text-white lg:px-6 px-3 lg:py-2 py-1 z-50 shadow-lg items-center">
@@ -63,7 +64,7 @@ const page = () => {
           Welcome to My Website! Check out the latest updates.
         </p>
       </div>
-      <div className="grid grid-rows-[60px_1fr_60px] items-center justify-items-center min-h-screen gap-1 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-main-background">
+      <div className="grid grid-rows-[60px_1fr_auto_60px] items-center justify-items-center min-h-screen gap-10 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-main-background">
         <div></div>
         <div className="bg-gray-200 p-10 rounded-lg shadow-lg">
           <h1 className="text-7xl font-extrabold text-center text-indigo-600 drop-shadow-lg px-50 py-10">
@@ -71,11 +72,17 @@ const page = () => {
           </h1>
           <div className="flex space-x-5 "></div>
           <br></br>
-          <Pictures />
+          <PicturesFeed />
+        </div>
+        <div className="bg-gray-200 p-10 rounded-lg shadow-lg  w-[1100px]">
+          <h1 className="text-7xl font-extrabold text-center text-indigo-600 drop-shadow-lg px-50 py-10">
+            Submit a Picture
+          </h1>
+          <div>
+            <ImageForm></ImageForm>
+          </div>
         </div>
       </div>
     </>
   );
-};
-
-export default page;
+}

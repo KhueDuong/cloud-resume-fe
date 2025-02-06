@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getViewCount, updateViewCount } from "./api/view-count";
 
+
+
 export default function Home() {
   const [totalViewCount, setTotalViewCount] = useState(null);
   const [individualViewCount, setIndividualViewCount] = useState(null);
