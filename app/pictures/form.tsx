@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -91,7 +91,7 @@ export function ImageForm() {
     <div className="grid grid-cols-[3fr_2fr] gap-10">
       <div className="flex flex-1 bg-slate-50 rounded-md justify-center items-center border border-gray-500">
         {file ? (
-          <img
+          <Image
             src={file}
             alt="Uploaded preview"
             className="max-w-full max-h-48 rounded-md"
