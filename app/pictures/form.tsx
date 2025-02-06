@@ -58,7 +58,7 @@ export function ImageForm() {
           const base64Data = reader.result as string;
 
           // check if file is too large
-          if (selectedFile.size > 20000) {
+          if (selectedFile.size > MAX_FILE_SIZE) {
             throw new Error("File is too large (> 2Mb).");
           } else {
             setFile(base64Data);
