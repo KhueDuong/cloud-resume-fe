@@ -75,7 +75,7 @@ export function ImageForm() {
     console.log("Form data is valid:", form);
     if (file != undefined) {
       // remove metadata "data:image/png"
-      var base64ImageString = file.replace(/^data:image\/[a-z]+;base64,/, "");
+      const base64ImageString = file.replace(/^data:image\/[a-z]+;base64,/, "");
       // post via API to server
       const res = await postNewPicture({
         base64ImageData: base64ImageString,
