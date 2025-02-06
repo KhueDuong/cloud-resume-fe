@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { postNewPicture } from "../api/pictures";
 
-const MAX_FILE_SIZE = 200000;
+const MAX_FILE_SIZE = 2000000;
 
 // form schema
 const formSchema = z.object({
@@ -57,6 +57,8 @@ export function ImageForm() {
         try {
           const base64Data = reader.result as string;
 
+          console.log(selectedFile.size);
+
           // check if file is too large
           if (selectedFile.size > MAX_FILE_SIZE) {
             throw new Error("File is too large (> 2Mb).");
@@ -91,7 +93,7 @@ export function ImageForm() {
     <div className="grid grid-cols-[3fr_2fr] gap-10">
       <div className="flex flex-1 bg-slate-50 rounded-md justify-center items-center border border-gray-500">
         {file ? (
-          <Image
+          <img
             src={file}
             alt="Uploaded preview"
             className="max-w-full max-h-48 rounded-md"
