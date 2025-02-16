@@ -51,10 +51,10 @@ export function ImageForm() {
   });
 
   function resizeMe(img: HTMLImageElement, strength: number) {
-    var canvas = document.createElement("canvas");
+    const canvas = document.createElement("canvas");
 
-    var width = img.width;
-    var height = img.height;
+    let width = img.width;
+    let height = img.height;
 
     // calculate the width and height, constraining the proportions
     if (width > height) {
@@ -74,7 +74,7 @@ export function ImageForm() {
     // resize the canvas and draw the image data into it
     canvas.width = width;
     canvas.height = height;
-    var ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
     ctx?.drawImage(img, 0, 0, width, height);
 
     return canvas.toDataURL("image/jpeg", strength);
@@ -108,7 +108,7 @@ export function ImageForm() {
               // have to wait till it's loaded
               console.log("2");
 
-              var resized;
+              let resized;
               if (selectedFile.size < MAX_SMALL_FILE_SIZE) {
                 resized = resizeMe(image, 1); // resized image url
               } else if (selectedFile.size < MAX_MEDIUM_FILE_SIZE) {
