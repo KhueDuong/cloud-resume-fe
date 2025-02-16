@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,8 +16,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { postNewPicture } from "../api/pictures";
+import { Loader2 } from "lucide-react";
 
-const MAX_FILE_SIZE = 2000000;
+const MAX_FILE_SIZE = 5000000;
+const MAX_SMALL_FILE_SIZE = 1000000;
+const MAX_MEDIUM_FILE_SIZE = 3000000;
+
+const MAX_WIDTH = 100000;
+const MAX_HEIGHT = 100000;
 
 // form schema
 const formSchema = z.object({
@@ -32,6 +37,8 @@ const formSchema = z.object({
 
 export function ImageForm() {
   const [file, setFile] = useState<any>(undefined);
+  const [submitButtonDisable, setSubmitButtonDisable] =
+    useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -42,6 +49,37 @@ export function ImageForm() {
       picture: undefined,
     },
   });
+
+  function resizeMe(img: HTMLImageElement, strength: number) {
+    var canvas = document.createElement("canvas");
+
+    var width = img.width;
+    var height = img.height;
+
+    // calculate the width and height, constraining the proportions
+    if (width > height) {
+      if (width > MAX_WIDTH) {
+        //height *= max_width / width;
+        height = Math.round((height *= MAX_WIDTH / width));
+        width = MAX_WIDTH;
+      }
+    } else {
+      if (height > MAX_HEIGHT) {
+        //width *= max_height / height;
+        width = Math.round((width *= MAX_HEIGHT / height));
+        height = MAX_HEIGHT;
+      }
+    }
+
+    // resize the canvas and draw the image data into it
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext("2d");
+    ctx?.drawImage(img, 0, 0, width, height);
+
+    return canvas.toDataURL("image/jpeg", strength);
+  }
+
   const onFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Get the first file
     const selectedFile = event.target.files?.[0];
@@ -50,20 +88,36 @@ export function ImageForm() {
       const reader = new FileReader();
 
       // convert to base64
-      reader.readAsDataURL(selectedFile);
+      //reader.readAsDataURL(selectedFile);
+      reader.readAsArrayBuffer(selectedFile);
 
       // perform actions on load
       reader.onload = async () => {
         try {
-          const base64Data = reader.result as string;
-
-          console.log(selectedFile.size);
-
           // check if file is too large
           if (selectedFile.size > MAX_FILE_SIZE) {
             throw new Error("File is too large (> 2Mb).");
           } else {
-            setFile(base64Data);
+            const url = URL.createObjectURL(selectedFile);
+            console.log("alo");
+
+            // resize image
+            const image = new Image();
+            image.src = url;
+            image.onload = function () {
+              // have to wait till it's loaded
+              console.log("2");
+
+              var resized;
+              if (selectedFile.size < MAX_SMALL_FILE_SIZE) {
+                resized = resizeMe(image, 1); // resized image url
+              } else if (selectedFile.size < MAX_MEDIUM_FILE_SIZE) {
+                resized = resizeMe(image, 0.7); // resized image url
+              } else if (selectedFile.size < MAX_FILE_SIZE) {
+                resized = resizeMe(image, 0.5); // resized image url
+              }
+              setFile(resized);
+            };
           }
         } catch (error) {
           console.error(error);
@@ -79,12 +133,15 @@ export function ImageForm() {
       // remove metadata "data:image/png"
       const base64ImageString = file.replace(/^data:image\/[a-z]+;base64,/, "");
       // post via API to server
+      setSubmitButtonDisable(true);
       const res = await postNewPicture({
         base64ImageData: base64ImageString,
         fileName: file.name,
         author: values.author,
         description: values.description,
       });
+
+      window.location.reload();
       console.log(res);
     }
   }
@@ -172,7 +229,16 @@ export function ImageForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={submitButtonDisable}>
+              {submitButtonDisable ? (
+                <>
+                  Submitting
+                  <Loader2 className="animate-spin" />
+                </>
+              ) : (
+                <>Submit</>
+              )}
+            </Button>
           </form>
         </Form>
       </div>

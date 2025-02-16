@@ -41,7 +41,7 @@ export default function Pictures() {
                 key={i + "c"}
               >
                 <p className="px-3 md:text-xs lg:text-lg text-left">
-                  {"By " + pic.author}
+                  {"By " + pic.author + ": " + pic.description}
                 </p>
               </div>
             </div>
