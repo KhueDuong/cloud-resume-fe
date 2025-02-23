@@ -1,8 +1,14 @@
-import Globe from "react-globe.gl";
 import worldMap from "../public/world-map.png";
 import { getVisitorGlobeData } from "../api/view-count";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import * as THREE from "three";
+//import Globe from "react-globe.gl";
+
+const Globe = dynamic(() => import("react-globe.gl"), {
+  ssr: false,
+});
+//const THREE = dynamic(() => import('three'));
 
 export type visitorGlobeData = {
   count: number;
@@ -14,6 +20,7 @@ export function VisitGlobe() {
   const [visitorGlobeData, setVisitorGlobeData] = useState<visitorGlobeData[]>(
     []
   );
+
   useEffect(() => {
     const fetchData = async () => {
       try {
