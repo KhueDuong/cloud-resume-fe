@@ -60,3 +60,17 @@ export const getViewCount = async () => {
     throw error;
   }
 };
+
+export const getVisitorGlobeData = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/view-count/globe`);
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error fetching view count:", error.message);
+    }
+    throw error;
+  }
+};
