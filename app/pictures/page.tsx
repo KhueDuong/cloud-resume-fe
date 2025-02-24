@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { getAllPictures, postNewPicture } from "../api/pictures";
 
 import { ImageForm } from "./form";
+import { StickyHeader } from "../components/stickyHeader";
 
 export default function Pictures() {
   function PicturesFeed() {
@@ -27,17 +28,18 @@ export default function Pictures() {
         <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
           {pictures.map((pic, i) => (
             <div
-              className="flex flex-col bg-neutral-700 w-[500px] h-[360px] p-3 rounded-md justify-between"
+              className="flex flex-col divide-y-[1px] divide-stone-300 bg-stone-200 border-[1px] shadow-md w-[500px] rounded-md"
               key={i + "a"}
             >
               <img
                 key={i + "b"}
                 src={pic.URL}
                 alt="new"
-                className="w-full h-[275px] object-contain rounded-md"
+                className="w-full h-[275px] object-contain rounded-md p-3"
               />
+
               <div
-                className="bg-neutral-300 w-full h-[50px] p-3 rounded-md"
+                className=" text-stone-800 w-full h-[50px] p-3"
                 key={i + "c"}
               >
                 <p className="px-3 md:text-xs lg:text-lg text-left">
@@ -52,23 +54,12 @@ export default function Pictures() {
   }
 
   return (
-    <>
-      <div className="flex sticky top-0 bg-gray-800 text-white lg:px-6 px-3 lg:py-2 py-1 z-50 shadow-lg items-center">
-        <Button
-          asChild
-          className="bg-white text-black md:text-xs lg:text-lg border-2 border-gray-300 lg:rounded-lg md:rounded-xs py-0 px-2 lg:py-2 lg:px-4 hover:bg-gray-100"
-        >
-          <Link href="/">Home Page</Link>
-        </Button>
-        <p className="px-3 lg:px-40 md:text-xs lg:text-lg">
-          Welcome to My Website! Check out the latest updates.
-        </p>
-      </div>
-      <div className="grid grid-rows-[60px_1fr_auto_60px] items-center justify-items-center min-h-screen gap-10 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-main-background">
-        <div></div>
-        <div className="bg-gray-200 p-10 rounded-lg shadow-lg">
-          <h1 className="text-7xl font-extrabold text-center text-indigo-600 drop-shadow-lg px-50 py-10">
-            My Pictures
+    <div className="bg-stone-900">
+      <StickyHeader></StickyHeader>
+      <div className="grid grid-flow-row items-center justify-items-center min-h-screen gap-10 font-[family-name:var(--font-geist-sans)] py-10">
+        <div className="bg-stone-300 p-10 rounded-lg shadow-lg">
+          <h1 className="text-7xl font-extrabold text-center text-stone-900  drop-shadow-lg py-3">
+            Gallery
           </h1>
           <div className="flex space-x-5 "></div>
           <br></br>
@@ -83,6 +74,6 @@ export default function Pictures() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

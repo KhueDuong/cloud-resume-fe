@@ -1,22 +1,14 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
+import { StickyHeader } from "../components/stickyHeader";
 
 const page = () => {
   return (
-    <>
-      <div className="flex sticky top-0 bg-gray-800 text-white lg:px-6 px-3 lg:py-2 py-1 z-50 shadow-lg items-center">
-        <Button
-          asChild
-          className="bg-white text-black md:text-xs lg:text-lg border-2 border-gray-300 lg:rounded-lg md:rounded-xs py-0 px-2 lg:py-2 lg:px-4 hover:bg-gray-100"
-        >
-          <Link href="/">Home Page</Link>
-        </Button>
-        <p className="px-3 lg:px-40 md:text-xs lg:text-lg">
-          Welcome to My Website! Check out the latest updates.
-        </p>
-      </div>
-      <div className="grid items-center justify-items-center min-h-screen p-2 lg:p8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] bg-cover bg-center bg-main-background">
+    <div className="bg-stone-900">
+      <StickyHeader />
+
+      <div className="grid items-center justify-items-center min-h-screen p-2 lg:p8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <div className="bg-gray-200 p-3 lg:p-10 rounded-lg shadow-lg mt-10 max-w-3xl">
           <h1 className="text-3xl lg:text-7xl font-extrabold text-center text-indigo-600 drop-shadow-lg px-50 py-3">
             About This Website
@@ -208,7 +200,7 @@ const page = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
