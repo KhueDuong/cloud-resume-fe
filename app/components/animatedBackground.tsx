@@ -19,10 +19,10 @@ const PIXEL_DENSITY = 0.2;
 function sketch(p5: P5CanvasInstance) {
   let n = -7;
   let m = -2;
-  let a = 1;
+  const a = 1;
 
   let lastUpdateTime = 0;
-  let updateInterval = 1000 / 60; // Target update every 60 FPS (adjust as needed)
+  const updateInterval = 1000 / 60; // Target update every 60 FPS (adjust as needed)
   p5.setup = () => {
     p5.pixelDensity(PIXEL_DENSITY);
 
@@ -34,7 +34,7 @@ function sketch(p5: P5CanvasInstance) {
     p5.background(8);
     p5.loadPixels();
 
-    let currentTime = p5.millis();
+    const currentTime = p5.millis();
 
     // Only update `n` at the desired FPS interval
     if (currentTime - lastUpdateTime >= updateInterval) {
@@ -50,14 +50,14 @@ function sketch(p5: P5CanvasInstance) {
     p5.rotateY(p5.frameCount * 0.01);
     p5.plane(1000);
     p5.pop();*/
-    for (var i = 0; i < DRAWING_WIDTH; i += 1 / PIXEL_DENSITY) {
-      for (var j = 0; j < DRAWING_HEIGHT; j += 1 / PIXEL_DENSITY) {
+    for (let i = 0; i < DRAWING_WIDTH; i += 1 / PIXEL_DENSITY) {
+      for (let j = 0; j < DRAWING_HEIGHT; j += 1 / PIXEL_DENSITY) {
         const xNorm = (i + n) / DRAWING_WIDTH;
         const yNorm = (j + m * 10) / DRAWING_HEIGHT;
-        let value =
+        const value =
           0.2 * Math.cos(n * Math.PI * xNorm) * Math.cos(m * Math.PI * yNorm) -
           Math.cos(m * Math.PI * xNorm) * Math.cos(n * Math.PI * yNorm);
-        let appear = p5.random(0, 100);
+        //let appear = p5.random(0, 100);
         if (value < 0.3 && value > 0.01) {
           //const neonYellow = p5.color(1490 * value, 2450 * value, 660 * value);
           const c = p5.color(149, 245, 66);
