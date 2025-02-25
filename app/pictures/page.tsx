@@ -9,7 +9,9 @@ import { ImageForm } from "./form";
 import { StickyHeader } from "../components/stickyHeader";
 
 export default function Pictures() {
-  document.body.style.overflow = "auto";
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  });
 
   function PicturesFeed() {
     const [pictures, setPictures] = useState<any[]>([]);

@@ -2,11 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import { StickyHeader } from "../components/stickyHeader";
 
 export default function AboutWebsite() {
-  document.body.style.overflow = "auto";
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  });
 
   return (
     <div className="bg-stone-900">

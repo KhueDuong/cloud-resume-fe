@@ -1,10 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { StickyHeader } from "../components/stickyHeader";
 
 export default function Resume() {
-  document.body.style.overflow = "auto";
+  useEffect(() => {
+    document.body.style.overflow = "auto";
+  });
 
   return (
     <div className="bg-stone-900">
