@@ -1,9 +1,13 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 import { StickyHeader } from "../components/stickyHeader";
 
-const page = () => {
+export default function AboutWebsite() {
+  document.body.style.overflow = "auto";
+
   return (
     <div className="bg-stone-900">
       <StickyHeader />
@@ -202,6 +206,4 @@ const page = () => {
       </div>
     </div>
   );
-};
-
-export default page;
+}

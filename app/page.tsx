@@ -6,6 +6,7 @@ import { getViewCount, updateViewCount } from "./api/view-count";
 import logo from "./public/kbz-logo.png";
 import { VisitGlobe } from "./components/visitGlobe";
 import { AnimatedBackground } from "./components/animatedBackground";
+import Ticker from "react-ticker";
 
 export default function Home() {
   const [totalViewCount, setTotalViewCount] = useState(null);
@@ -25,50 +26,73 @@ export default function Home() {
     updateViewCount(); // Call the function to update the view count (side effect)
     fetchCount(); // Fetch the count and update state
   }, []);
+  //document.body.style.overflow = "hidden";
 
   return (
     <div className="z-0 relative bg-stone-950">
       <AnimatedBackground></AnimatedBackground>
 
-      <div className="z-20 inset-0 absolute grid grid-cols-[1fr_500px] lg:grid-cols-[1fr_500px] h-screen justify-items-center  pt-1 lg:pt-3 pb-1 gap-1 lg:gap-5 sm:p-20 font-[family-name:var(--font-geist-sans)] ">
-        <div className=" h-[410px] p-5 lg:p-5 bg-stone-950/90 mt-10 rounded-2xl border-[1px] border-stone-500 justify-center items-center">
+      <div className="z-20 inset-0 absolute grid grid-cols-[1fr_1050px] h-screen font-[family-name:var(--font-geist-sans)] ">
+        <div className=" h-screen p-5 lg:p-5 bg-stone-950/95 rounded-none border-r-[6px] border-double border-stone-100">
           <h1 className="text-center text-gray-500 text-xs lg:text-md">
             My Cloud Resume Challange and Personal Website
           </h1>
 
-          <img src={logo.src} className="w-[400px] h-auto mx-auto my-6"></img>
+          <img src={logo.src} className="w-[300px] h-auto mx-auto my-6"></img>
 
-          <div className="grid grid-cols-2 gap-1 lg:flex lg:space-x-5">
-            <Button asChild className="text-xs lg:text-md">
+          <div className="grid grid-flow-row gap-1  font-bold text-xl">
+            <Button
+              asChild
+              className="bg-transparent hover:bg-transparent hover:font-bold"
+            >
               <Link href="/about_website">About This Website</Link>
             </Button>
-            <Button asChild className="text-xs lg:text-md">
+            <Button
+              asChild
+              className="bg-transparent hover:bg-transparent hover:font-bold"
+            >
               <Link href="/resume">My Resume</Link>
             </Button>
-            <Button asChild className="text-xs lg:text-md">
+            <Button
+              asChild
+              className="bg-transparent hover:bg-transparent hover:font-bold"
+            >
               <Link href="/pictures">Gallery</Link>
             </Button>
-            <Button asChild className="text-xs lg:text-md">
+            <Button
+              asChild
+              className="bg-transparent hover:bg-transparent hover:font-bold"
+            >
               <Link href="/about_me">About Me</Link>
             </Button>
           </div>
           <br></br>
         </div>
-        <div className="flex items-center justify-center w-[490px] h-[250px] bg-stone-950/90 mt-10 rounded-2xl border-[1px] border-stone-500 ">
-          <VisitGlobe></VisitGlobe>
-          {/* 
-          <div className="bg-blue-500 text-white items-center justify-center px-4 py-2 rounded-lg shadow-lg md:text-xs lg:text-sm font-medium border-4 border-white">
-            This website has been visited from {totalViewCount} different
-            addresses
-          </div>
 
-          <div className="bg-blue-500 text-white  items-center justify-center px-4 py-2 rounded-lg shadow-lg text-sm font-medium border-4 border-white hidden md:block">
-            Your address has visited this website {individualViewCount} times
+        <div className="flex flex-col justify-between">
+          <div className="grid grid-cols-[550px_500px]">
+            <div className="px-4 py-7 flex flex-col justify-between  h-[250px] bg-stone-950/90 border-b-[2px] border-r-[2px] border-stone-200 ">
+              <p className="text-2xl font-bold text-stone-200">
+                Distraction Timer extension for firefox is out
+              </p>
+              <Button className="w-min p-0 text-5xl font-bold text-stone-200 bg-transparent hover:bg-transparent hover:text-white hover:font-extrabold">
+                {" "}
+                Get it now!
+              </Button>
+            </div>
+
+            <div className="flex items-center justify-center  h-[250px] bg-stone-950/90 border-b-[2px] border-stone-200 ">
+              <VisitGlobe></VisitGlobe>
+              <div className="flex flex-col text-stone-100 text-sm">
+                <a>{totalViewCount + " visits around the world."} </a>
+                <a>{individualViewCount + " visits from your IP address."} </a>
+              </div>
+            </div>
           </div>
-          */}
-          <div className="flex flex-col text-stone-100 text-sm">
-            <a>{totalViewCount + " visits around the world."} </a>
-            <a>{individualViewCount + " visits from your IP address."} </a>
+          <div className="flex bg-stone-950/90 border-t-[2px] border-stone-200 px-3">
+            <p className="text-3xl font-bold text-stone-200">
+              Welcome to khuebanhzai.com
+            </p>
           </div>
         </div>
       </div>
