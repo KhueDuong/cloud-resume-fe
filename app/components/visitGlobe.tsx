@@ -1,8 +1,9 @@
 import worldMap from "../public/world-map.png";
 import { getVisitorGlobeData } from "../api/view-count";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import * as THREE from "three";
+import { GlobeMethods } from "react-globe.gl";
 //import Globe from "react-globe.gl";
 
 const Globe = dynamic(() => import("react-globe.gl"), {
@@ -20,7 +21,7 @@ export function VisitGlobe() {
   const [visitorGlobeData, setVisitorGlobeData] = useState<visitorGlobeData[]>(
     []
   );
-
+  const globeRef = useRef<GlobeMethods>();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,6 +31,9 @@ export function VisitGlobe() {
       } catch (error) {}
     };
     fetchData();
+    if (globeRef.current) {
+      globeRef.current?.renderer().setPixelRatio(0.01);
+    }
   }, []);
 
   /*
@@ -62,6 +66,7 @@ export function VisitGlobe() {
 
   return (
     <Globe
+      ref={globeRef}
       globeMaterial={globeMaterial}
       showGraticules={true}
       hexBinPointsData={gData}
@@ -71,10 +76,12 @@ export function VisitGlobe() {
       width={270}
       height={230}
       backgroundColor="rgba(0,0,0,0)"
+      //showAtmosphere={false}
       atmosphereColor="white"
-      atmosphereAltitude={0.1}
+      atmosphereAltitude={0.05}
       hexTopColor={() => "#d40614"}
       hexSideColor={() => "#d40614"}
+      rendererConfig={{ antialias: false, alpha: true, precision: "lowp" }}
     />
   );
 }

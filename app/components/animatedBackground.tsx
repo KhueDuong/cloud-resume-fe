@@ -31,12 +31,19 @@ function sketch(p5: P5CanvasInstance) {
       const dy = event.clientY - lastY;
       const distance = dx + dy; // Pythagorean theorem
       totalDistance += distance;
-      a += distance * speedA;
+      x += dx * speedX;
+      y += dy * speedX;
 
-      if (a <= -2) {
-        speedA = 0.005;
-      } else if (a >= 2) {
-        speedA = -0.005;
+      if (x <= -2) {
+        speedX = 0.005;
+      } else if (x >= 2) {
+        speedX = -0.005;
+      }
+
+      if (y <= -2) {
+        speedY = 0.005;
+      } else if (y >= 2) {
+        speedY = -0.005;
       }
     }
 
@@ -49,11 +56,14 @@ function sketch(p5: P5CanvasInstance) {
 
   let n = p5.random(-5, 5);
   let m = -2;
-  let a = -1;
+  let x = -1;
+  let y = -1;
+
   let speedN = 0.007;
   let speedM = 0.005;
 
-  let speedA = 0.005;
+  let speedX = 0.005;
+  let speedY = 0.005;
 
   let lastUpdateTime = 0;
   const updateInterval = 1000 / 60; // Target update every 60 FPS (adjust as needed)
@@ -109,8 +119,8 @@ function sketch(p5: P5CanvasInstance) {
         const xNorm = (i + n) / width;
         const yNorm = (j + m * 10) / height;
         const value =
-          a * Math.cos(n * Math.PI * xNorm) * Math.cos(m * Math.PI * yNorm) -
-          Math.cos(m * Math.PI * xNorm) * Math.cos(n * Math.PI * yNorm);
+          x * Math.cos(n * Math.PI * xNorm) * Math.cos(m * Math.PI * yNorm) -
+          y * Math.cos(m * Math.PI * xNorm) * Math.cos(n * Math.PI * yNorm);
         //let appear = p5.random(0, 100);
         if (value < 0.3 && value > 0.01) {
           //const neonYellow = p5.color(1490 * value, 2450 * value, 660 * value);

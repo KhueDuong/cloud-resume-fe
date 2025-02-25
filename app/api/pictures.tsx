@@ -5,11 +5,13 @@ export const postNewPicture = async ({
   author,
   fileName,
   description,
+  email,
 }: {
   base64ImageData: string;
   author: string;
   fileName: string;
   description: string;
+  email: string;
 }) => {
   try {
     const response = await fetch(`${API_BASE_URL}/pictures`, {
@@ -19,6 +21,7 @@ export const postNewPicture = async ({
         fileName: fileName,
         fileContent: base64ImageData,
         description: description,
+        email: email,
       }),
     });
 

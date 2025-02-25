@@ -32,7 +32,7 @@ export default function Home() {
       <AnimatedBackground></AnimatedBackground>
 
       <div className="z-20 inset-0 absolute grid grid-cols-[1fr_1050px] h-screen font-[family-name:var(--font-geist-sans)] ">
-        <div className=" h-screen p-5 lg:p-5 bg-stone-950/95 rounded-none border-r-[6px] border-double border-stone-100">
+        <div className=" h-screen p-5 lg:p-5 bg-stone-950/80 backdrop-blur-lg rounded-none border-r-[6px] border-double border-stone-100">
           <h1 className="text-center text-gray-500 text-xs lg:text-md">
             My Cloud Resume Challange and Personal Website
           </h1>
@@ -70,17 +70,19 @@ export default function Home() {
 
         <div className="flex flex-col justify-between">
           <div className="grid grid-cols-[550px_500px]">
-            <div className="px-4 py-7 flex flex-col justify-between  h-[250px] bg-stone-950/90 border-b-[2px] border-r-[2px] border-stone-200 ">
+            <div className="px-4 py-7 flex flex-col justify-between backdrop-blur-lg h-[250px] bg-stone-950/80 border-b-[2px] border-r-[2px] border-stone-200 ">
               <p className="text-2xl font-bold text-stone-200">
-                Distraction Timer extension for firefox is out
+                Distraction Timer extension for Firefox is out
               </p>
               <Button className="w-min p-0 text-5xl font-bold text-stone-200 bg-transparent hover:bg-transparent hover:text-white hover:font-extrabold">
                 {" "}
-                Get it now!
+                <Link href="https://addons.mozilla.org/en-US/firefox/addon/distraction-timer/">
+                  Get it now!
+                </Link>
               </Button>
             </div>
 
-            <div className="flex items-center justify-center  h-[250px] bg-stone-950/90 border-b-[2px] border-stone-200 ">
+            <div className="flex items-center justify-center  h-[250px] backdrop-blur-lg bg-stone-950/80 border-b-[2px] border-stone-200 ">
               <VisitGlobe></VisitGlobe>
               <div className="flex flex-col text-stone-100 text-sm">
                 <a>{totalViewCount + " visits around the world."} </a>
@@ -88,7 +90,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex bg-stone-950/90 border-t-[2px] border-stone-200 px-3">
+          <div className="flex backdrop-blur-lg bg-stone-950/80 border-t-[2px] border-stone-200 px-3">
             <p className="text-3xl font-bold text-stone-200">
               Welcome to khuebanhzai.com
             </p>

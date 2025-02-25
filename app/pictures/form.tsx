@@ -139,6 +139,7 @@ export function ImageForm() {
         fileName: file.name,
         author: values.author,
         description: values.description,
+        email: values.email,
       });
 
       window.location.reload();
