@@ -6,7 +6,6 @@ import { getViewCount, updateViewCount } from "./api/view-count";
 import logo from "./public/kbz-logo.png";
 import { VisitGlobe } from "./components/visitGlobe";
 import { AnimatedBackground } from "./components/animatedBackground";
-import Ticker from "react-ticker";
 
 export default function Home() {
   const [totalViewCount, setTotalViewCount] = useState(null);
