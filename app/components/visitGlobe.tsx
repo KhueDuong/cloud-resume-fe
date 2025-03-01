@@ -1,4 +1,3 @@
-import worldMap from "../public/world-map.png";
 import { getVisitorGlobeData } from "../api/view-count";
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
@@ -58,7 +57,7 @@ export function VisitGlobe() {
 
   useEffect(() => {
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load(worldMap.src, (texture) => {
+    textureLoader.load("/world-map.png", (texture) => {
       const material = new THREE.MeshToonMaterial({ map: texture });
       setGlobeMaterial(material);
     });

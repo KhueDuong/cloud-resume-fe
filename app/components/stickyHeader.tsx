@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import logo from "../public/kbz-logo.png";
-import dynamic from "next/dynamic";
 
 export function StickyHeader() {
   return (
@@ -11,7 +9,10 @@ export function StickyHeader() {
         className="w-[120px] bg-transparent md:text-xs lg:text-lg border-none  py-0 px-2 lg:py-2 lg:px-4 hover:bg-transparent"
       >
         <Link href="/">
-          <img src={logo.src} className="w-[70px] h-auto mx-auto my-6"></img>
+          <img
+            src="/kbz-logo.png"
+            className="w-[70px] h-auto mx-auto my-6"
+          ></img>
         </Link>
       </Button>
       <Button
@@ -37,6 +38,12 @@ export function StickyHeader() {
         className="bg-transparent text-stone-300 font-bold hover:text-white md:text-xs lg:text-sm border-none py-0 px-2 lg:py-2 lg:px-4 hover:bg-transparent"
       >
         <Link href="/about_me">About Me</Link>
+      </Button>
+      <Button
+        asChild
+        className="bg-transparent text-stone-300 font-bold hover:text-white md:text-xs lg:text-sm border-none py-0 px-2 lg:py-2 lg:px-4 hover:bg-transparent"
+      >
+        <Link href="/viceragenesis">Viceragenesis</Link>
       </Button>
     </div>
   );

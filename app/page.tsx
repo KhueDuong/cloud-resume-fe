@@ -37,7 +37,10 @@ export default function Home() {
             My Cloud Resume Challange and Personal Website
           </h1>
 
-          <img src={logo.src} className="w-[300px] h-auto mx-auto my-6"></img>
+          <img
+            src="/kbz-logo.png"
+            className="w-[300px] h-auto mx-auto my-6"
+          ></img>
 
           <div className="grid grid-flow-row gap-1  font-bold text-xl">
             <Button
@@ -63,6 +66,13 @@ export default function Home() {
               className="bg-transparent hover:bg-transparent hover:font-bold"
             >
               <Link href="/about_me">About Me</Link>
+            </Button>
+
+            <Button
+              asChild
+              className="bg-transparent hover:bg-transparent hover:font-bold"
+            >
+              <Link href="/viceragenesis">Viceragenesis</Link>
             </Button>
           </div>
           <br></br>

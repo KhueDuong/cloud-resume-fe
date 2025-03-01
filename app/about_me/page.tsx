@@ -15,7 +15,7 @@ export default function AboutMe() {
       <StickyHeader></StickyHeader>
       <div className="grid items-center justify-items-center min-h-screen p-2 lg:p8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <div className="bg-gray-200 p-3 lg:p-10 rounded-lg shadow-lg mt-10 max-w-3xl">
-          <h1 className="text-3xl lg:text-7xl font-extrabold text-center text-indigo-600 drop-shadow-lg px-50 py-3">
+          <h1 className="text-7xl font-extrabold text-center text-stone-900  drop-shadow-lg py-3">
             About Me
           </h1>
           <div className="flex space-x-5 "></div>
