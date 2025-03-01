@@ -16,7 +16,7 @@ export default function AboutMe() {
         <div className="bg-gray-200 p-3 lg:p-10 rounded-lg shadow-lg w-[1100px] flex-auto justify-center items-center">
           <div className="flex items-center justify-center ">
             <iframe
-              src={`/viceragenesis/index.html`}
+              src={`/viceragenesis/viceragenesis.html`}
               width={960}
               height={600}
               title="Viceragenesis game"
