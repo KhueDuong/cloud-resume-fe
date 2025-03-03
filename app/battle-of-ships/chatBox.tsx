@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,28 +14,44 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
-  name: z.string().min(4).max(50),
-  message: z.string().min(0).max(100),
+  message: z.string().min(1).max(100),
 });
 
-export default function ChatBox() {
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("alo");
+interface ChatBoxProps {
+  name: string;
+}
+
+type Message = {
+  name: string;
+  content: string;
+};
+
+export default function ChatBox(chatBoxProps: ChatBoxProps) {
+  const [messages, setMessages] = useState<Message[]>([]);
   const [connection, setConnection] = useState<HubConnection>();
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
       message: "",
     },
   });
 
   useEffect(() => {
-    document.body.style.overflow = "auto";
     startConnection();
   }, []);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    chatContainerRef.current?.scrollIntoView(false);
+  };
 
   const startConnection = async () => {
     try {
@@ -48,8 +64,9 @@ export default function ChatBox() {
       await newConnection.start();
 
       // listen for new message
-      newConnection.on("New Message", (name, message) => {
-        setMessage(message);
+      newConnection.on("New Message", (name, content) => {
+        const newMessage: Message = { name, content };
+        setMessages((message) => [...message, newMessage]);
       });
 
       // set the connection
@@ -64,81 +81,59 @@ export default function ChatBox() {
   };
 
   const onMessageSubmit = (values: z.infer<typeof formSchema>) => {
-    sendMessage(values.name, values.message);
+    sendMessage(chatBoxProps.name, values.message);
   };
 
-  const onNameSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values.name);
-    setName(values.name);
-  };
+  const MessagesBox = useMemo(() => {
+    return (
+      <>
+        {...messages.map((message, index) => (
+          <div key={index} className="flex flex-row">
+            <div
+              className={`${
+                message.name == chatBoxProps.name
+                  ? "text-blue-800"
+                  : "text-red-700"
+              }`}
+            >
+              {message.name} :
+            </div>
+            <div>{message.content}</div>
+          </div>
+        ))}
+      </>
+    );
+  }, [messages]);
 
   return (
     <>
-      <div className="rounded-xl w-[900px] bg-stone-500 p-5">
-        {!name ? (
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onNameSubmit)}
-              className="space-y-8 "
-            >
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Enter your name to start</FormLabel>
-                    <FormControl>
-                      <Input placeholder="khuebanhzai" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </form>
-          </Form>
-        ) : (
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onMessageSubmit)}
-              className="space-y-8 "
-            >
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>message</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="duonghoangkhue.2004@gmail.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>message</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="duonghoangkhue.2004@gmail.com"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+      <div className="rounded-xl w-[350px] bg-stone-500 p-5">
+        <ScrollArea className="h-[200px] rounded-md border">
+          <div className="px-4 py-2" ref={chatContainerRef}>
+            <div>{MessagesBox}</div>
+          </div>
+        </ScrollArea>
 
-              <Button type="submit">Submit</Button>
-            </form>
-          </Form>
-        )}
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onMessageSubmit)}
+            className="space-y-8 "
+          >
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>message</FormLabel>
+                  <FormControl>
+                    <Input placeholder="..." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
       </div>
     </>
   );
