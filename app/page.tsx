@@ -74,6 +74,12 @@ export default function Home() {
             >
               <Link href="/viceragenesis">Viceragenesis</Link>
             </Button>
+            <Button
+              asChild
+              className="bg-transparent hover:bg-transparent hover:font-bold"
+            >
+              <Link href="/battle-of-ships">Battle of Ships</Link>
+            </Button>
           </div>
           <br></br>
         </div>
